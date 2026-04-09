@@ -1,34 +1,84 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Custom styles for VAMOS Couture */
+
+.hero-gradient {
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.7));
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.whatsapp-btn {
+    background-color: #25D366;
+    transition: background-color 0.2s ease;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0F172A;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Form inputs */
+.form-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 12px 0;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+    border-bottom-color: #0F172A;
+}
+
+/* Category filter buttons */
+.category-btn {
+    padding: 8px 16px;
+    border: 1px solid #E2E8F0;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background-color: #0F172A;
     color: white;
+    border-color: #0F172A;
 }
 
-.App-link {
-    color: #61dafb;
+/* Admin sidebar */
+.admin-sidebar {
+    background-color: #0F172A;
+    min-height: 100vh;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.admin-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.2s ease;
+}
+
+.admin-nav-item:hover,
+.admin-nav-item.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
 }
