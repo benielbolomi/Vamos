@@ -1,0 +1,138 @@
+{
+  "theme": "LIGHT",
+  "archetype": "5 (Jewel & Luxury - Light version) mixed with 1 (Organic & Earthy)",
+  "core_philosophy": "Simple, uncluttered, professional, and sober. The design should evoke trust and heritage (tailoring/training) without being overly modern or extravagant. Focus on generous negative space and clear typography.",
+  "colors": {
+    "primary": {
+      "hex": "#0F172A",
+      "name": "Midnight Blue",
+      "usage": "Headings, primary CTA backgrounds, main navigation, borders"
+    },
+    "secondary": {
+      "hex": "#FCE7F3",
+      "name": "Pale Pink",
+      "usage": "Subtle section backgrounds, hover states, accent elements"
+    },
+    "background": {
+      "hex": "#FFFFFF",
+      "name": "Pure White",
+      "usage": "Main page backgrounds, cards"
+    },
+    "text": {
+      "main": "#1E293B",
+      "muted": "#475569"
+    },
+    "surface": {
+      "light_grey": "#F8FAFC",
+      "border": "#E2E8F0"
+    }
+  },
+  "typography": {
+    "heading_font": "Playfair Display",
+    "body_font": "DM Sans",
+    "scale": {
+      "h1": "text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight",
+      "h2": "text-2xl md:text-3xl lg:text-4xl tracking-tight leading-snug",
+      "h3": "text-xl md:text-2xl",
+      "body": "text-base md:text-lg leading-relaxed",
+      "small": "text-sm uppercase tracking-widest"
+    },
+    "rules": [
+      "Headings should use font-medium or font-semibold, avoid font-black for a sober look.",
+      "Body text should be highly legible with leading-relaxed.",
+      "Use uppercase with wide tracking for category labels and small subtitles."
+    ]
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing Philosophy. Use 2-3x more spacing than typical designs.",
+    "containers": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_spacing": "py-16 md:py-24 lg:py-32",
+    "grid_system": "Mobile-first. grid-cols-1 moving to grid-cols-2 or grid-cols-4 on desktop.",
+    "alignment": "Left-align dense text and product grids. Center-align hero text if appropriate for elegance."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#0F172A] text-white hover:bg-slate-800 transition-colors duration-200 px-6 py-3 rounded-none font-medium text-sm tracking-wide",
+      "whatsapp": "bg-[#25D366] text-white hover:bg-[#128C7E] transition-colors duration-200 px-6 py-3 rounded-none font-medium flex items-center justify-center gap-2",
+      "secondary": "border border-[#0F172A] text-[#0F172A] hover:bg-[#FCE7F3] transition-colors duration-200 px-6 py-3 rounded-none font-medium text-sm tracking-wide"
+    },
+    "cards": {
+      "product": "bg-white group cursor-pointer",
+      "image_container": "overflow-hidden aspect-[3/4] bg-[#F8FAFC] mb-4 relative",
+      "details": "flex flex-col gap-1",
+      "style": "No shadows. Use simple clean lines and high-quality imagery."
+    },
+    "forms": {
+      "inputs": "w-full border-b border-[#E2E8F0] focus:border-[#0F172A] py-3 bg-transparent outline-none transition-colors rounded-none placeholder-slate-400"
+    },
+    "header": {
+      "style": "bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-[#E2E8F0]"
+    }
+  },
+  "pages_and_features": {
+    "home": {
+      "hero": "Large elegant image, text overlay or side-by-side. If overlay, use a very light gradient or white box to ensure text readability. Include Slogan, Description, and WhatsApp CTA.",
+      "featured_products": "A section displaying 3-4 top products in a clean grid.",
+      "about_snippet": "A brief intro to the vocational center (Centre de Formation Professionnelle)."
+    },
+    "shop": {
+      "layout": "Sidebar or top bar for categories (Homme, Femme, Traditionnel, Mariage, Décontracté). Grid of product cards.",
+      "product_card": "Image, Name, Price. On hover, maybe a slight zoom on the image."
+    },
+    "product_details": {
+      "layout": "Split layout. Left: Large image. Right: Product name, price, description, size/quantity selectors, prominent 'Commander via WhatsApp' button."
+    },
+    "about": {
+      "content": "History of VAMOS, Mission statement, images of the seamstresses and center.",
+      "layout": "Editorial layout. Alternating text and images. Asymmetrical grid."
+    },
+    "contact": {
+      "layout": "Two columns. Left: Contact form (Name, Email, Message). Right: Contact details, Map or Image, WhatsApp direct link."
+    },
+    "admin_dashboard": {
+      "style": "Functional, clean. Use Shadcn components (Table, Dialog, Form).",
+      "features": "CRUD for products and categories."
+    }
+  },
+  "images": [
+    {
+      "category": "hero",
+      "url": "https://static.prod-images.emergentagent.com/jobs/8270ccea-dddf-4cf1-97cf-2426f86ce23a/images/70ed9a7d88128a73036dbac823de170541a36327b3e955991d7f15b4136b2969.png",
+      "description": "Elegant tailoring studio, hero image for the home page"
+    },
+    {
+      "category": "about_texture",
+      "url": "https://static.prod-images.emergentagent.com/jobs/8270ccea-dddf-4cf1-97cf-2426f86ce23a/images/ec840c49a388d47ec22a282560146d6582694b1ec4e77ccb7028505a300bddc0.png",
+      "description": "Premium folded fabric texture for about page backgrounds or decorative sections"
+    },
+    {
+      "category": "about_working",
+      "url": "https://images.unsplash.com/photo-1764298493231-59ae059cdc7e",
+      "description": "Woman cutting fabric, representing the vocational training center"
+    },
+    {
+      "category": "shop_banner",
+      "url": "https://images.unsplash.com/photo-1773260447043-ce61f54ccd51",
+      "description": "Mannequins displaying clothing, suitable for shop category headers"
+    },
+    {
+      "category": "heritage_machine",
+      "url": "https://images.unsplash.com/photo-1771315938125-0ab0134bcf5a",
+      "description": "Antique sewing machine, for the 'About' or 'Mission' section"
+    }
+  ],
+  "motion_and_interactions": {
+    "philosophy": "Minimal animations as requested. No bouncing or heavy transitions.",
+    "interactions": "Simple hover color transitions on buttons. Image slight zoom (scale 1.05) on product card hover.",
+    "page_load": "Fade in sections on scroll using simple opacity transitions."
+  },
+  "icons_and_assets": {
+    "library": "lucide-react",
+    "usage": "Use sparingly. Thin stroke width (1.5) to match the elegant typography."
+  },
+  "testing_and_accessibility": {
+    "contrast": "Ensure Midnight Blue text on Pale Pink or White backgrounds meets WCAG AA standards.",
+    "test_ids": "All interactive elements must include data-testid attributes (e.g., data-testid='whatsapp-order-button').",
+    "forms": "All form inputs must have accessible labels."
+  }
+}
