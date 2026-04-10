@@ -43,10 +43,15 @@ export default function AdminLogin() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-[#0F172A] flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold text-2xl font-serif">V</span>
+          <div className="w-16 h-16 bg-[#0F172A] flex items-center justify-center mx-auto mb-4 p-3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full text-[#FCE7F3]">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" strokeLinecap="round"/>
+              <path d="M8 12h8M12 8v8" strokeLinecap="round"/>
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 15v4M9 19h6" strokeLinecap="round"/>
+            </svg>
           </div>
-          <h1 className="font-serif text-2xl text-[#0F172A]">VAMOS Admin</h1>
+          <h1 className="font-serif text-2xl text-[#0F172A]">Crois Seulement</h1>
           <p className="text-[#475569] text-sm mt-2">Connectez-vous pour accéder au tableau de bord</p>
         </div>
 

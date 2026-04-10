@@ -19,8 +19,8 @@ export default function HomePage() {
 
   const fetchFeaturedProducts = async () => {
     try {
-      const response = await axios.get(`${API}/products?featured=true`);
-      setFeaturedProducts(response.data.slice(0, 4));
+      const response = await axios.get(`${API}/products`);
+      setFeaturedProducts(response.data.slice(0, 9));
     } catch (error) {
       console.error('Error fetching featured products:', error);
     } finally {
@@ -54,9 +54,9 @@ export default function HomePage() {
               Centre de Formation Professionnelle
             </p>
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white font-medium leading-tight mb-6 fade-in">
-              VAMOS
+              Crois Seulement
               <span className="block text-2xl sm:text-3xl lg:text-4xl mt-2 text-white/80">
-                "Crois Seulement"
+                Maison de Couture
               </span>
             </h1>
             <p className="text-white/80 text-lg mb-8 leading-relaxed fade-in">
@@ -142,8 +142,8 @@ export default function HomePage() {
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-              {[1, 2, 3, 4].map((i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
                 <div key={i} className="animate-pulse">
                   <div className="aspect-[3/4] bg-[#E2E8F0] mb-4"></div>
                   <div className="h-3 bg-[#E2E8F0] w-20 mb-2"></div>
@@ -153,7 +153,7 @@ export default function HomePage() {
               ))}
             </div>
           ) : featuredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {featuredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

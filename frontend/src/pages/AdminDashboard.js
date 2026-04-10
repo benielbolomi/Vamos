@@ -758,10 +758,15 @@ export default function AdminDashboard() {
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 admin-sidebar transform transition-transform lg:transform-none ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex items-center justify-between p-4 border-b border-white/10">
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white flex items-center justify-center">
-              <span className="text-[#0F172A] font-bold text-lg font-serif">V</span>
+            <div className="w-10 h-10 bg-white flex items-center justify-center p-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full text-[#0F172A]">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" strokeLinecap="round"/>
+                <path d="M8 12h8M12 8v8" strokeLinecap="round"/>
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 15v4M9 19h6" strokeLinecap="round"/>
+              </svg>
             </div>
-            <span className="text-white font-serif text-lg">VAMOS</span>
+            <span className="text-white font-serif text-lg">Crois Seulement</span>
           </Link>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-white">
             <X className="w-6 h-6" />

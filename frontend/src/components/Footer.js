@@ -16,16 +16,21 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-white flex items-center justify-center">
-                <span className="text-[#0F172A] font-bold text-lg font-serif">V</span>
+              <div className="w-10 h-10 bg-white flex items-center justify-center p-2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full text-[#0F172A]">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" strokeLinecap="round"/>
+                  <path d="M8 12h8M12 8v8" strokeLinecap="round"/>
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 15v4M9 19h6" strokeLinecap="round"/>
+                </svg>
               </div>
               <div>
-                <h2 className="font-serif text-xl font-semibold">VAMOS</h2>
+                <h2 className="font-serif text-xl font-semibold">Crois Seulement</h2>
                 <p className="text-xs text-white/60 tracking-widest uppercase">Couture</p>
               </div>
             </div>
             <p className="text-white/70 text-sm leading-relaxed mt-4">
-              Centre de Formation Professionnelle - "Crois Seulement"
+              Centre de Formation Professionnelle
             </p>
           </div>
 

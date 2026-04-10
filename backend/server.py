@@ -438,7 +438,7 @@ async def seed_data():
         await db.users.insert_one({
             "email": admin_email,
             "password_hash": hashed,
-            "name": "Admin VAMOS",
+            "name": "Admin Crois Seulement",
             "role": "admin",
             "created_at": datetime.now(timezone.utc).isoformat()
         })
@@ -465,6 +465,107 @@ async def seed_data():
         ]
         await db.categories.insert_many(default_cats)
         logger.info("Default categories created")
+    
+    # Seed sample products if none exist
+    prod_count = await db.products.count_documents({})
+    if prod_count == 0:
+        categories = await db.categories.find({}).to_list(10)
+        cat_map = {c["name"]: str(c["_id"]) for c in categories}
+        
+        sample_products = [
+            {
+                "name": "Costume Bleu Élégant",
+                "description": "Costume deux pièces en tissu premium, coupe moderne et élégante. Parfait pour les occasions formelles.",
+                "price": 150,
+                "category_id": cat_map.get("Homme", ""),
+                "sizes": ["S", "M", "L", "XL", "XXL"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "name": "Robe Africaine Wax",
+                "description": "Magnifique robe en tissu wax authentique, motifs traditionnels colorés. Confection artisanale.",
+                "price": 85,
+                "category_id": cat_map.get("Femme", ""),
+                "sizes": ["S", "M", "L", "XL"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "name": "Boubou Grand Chef",
+                "description": "Boubou traditionnel en bazin riche brodé à la main. Tenue de prestige pour les grandes cérémonies.",
+                "price": 200,
+                "category_id": cat_map.get("Traditionnel", ""),
+                "sizes": ["M", "L", "XL", "XXL"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "name": "Robe de Mariée Blanche",
+                "description": "Robe de mariée sur mesure avec dentelle et broderies. Création unique pour votre jour spécial.",
+                "price": 350,
+                "category_id": cat_map.get("Mariage", ""),
+                "sizes": ["S", "M", "L"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1594552072238-b8a33785b261?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "name": "Chemise Lin Décontractée",
+                "description": "Chemise légère en lin naturel, parfaite pour un style décontracté mais soigné.",
+                "price": 45,
+                "category_id": cat_map.get("Décontracté", ""),
+                "sizes": ["S", "M", "L", "XL"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "name": "Ensemble Pagne Femme",
+                "description": "Ensemble deux pièces en pagne africain. Jupe et haut assortis, coupe flatteuse.",
+                "price": 95,
+                "category_id": cat_map.get("Femme", ""),
+                "sizes": ["S", "M", "L", "XL"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1583391733975-91e47e1ff2b9?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "name": "Costume Mariage Homme",
+                "description": "Costume trois pièces spécial mariage. Tissus nobles et finitions impeccables.",
+                "price": 280,
+                "category_id": cat_map.get("Mariage", ""),
+                "sizes": ["S", "M", "L", "XL", "XXL"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "name": "Dashiki Brodé",
+                "description": "Dashiki traditionnel avec broderies élaborées. Style authentique africain moderne.",
+                "price": 65,
+                "category_id": cat_map.get("Traditionnel", ""),
+                "sizes": ["M", "L", "XL", "XXL"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "name": "Pantalon Casual",
+                "description": "Pantalon décontracté en coton premium. Confortable et élégant pour tous les jours.",
+                "price": 40,
+                "category_id": cat_map.get("Décontracté", ""),
+                "sizes": ["S", "M", "L", "XL"],
+                "featured": True,
+                "image_url": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=400&h=500&fit=crop",
+                "created_at": datetime.now(timezone.utc).isoformat()
+            }
+        ]
+        await db.products.insert_many(sample_products)
+        logger.info("Sample products created")
     
     # Write test credentials
     try:

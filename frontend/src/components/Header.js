@@ -28,11 +28,16 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3" data-testid="logo-link">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0F172A] flex items-center justify-center">
-              <span className="text-white font-bold text-lg md:text-xl font-serif">V</span>
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0F172A] flex items-center justify-center p-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full text-[#FCE7F3]">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" strokeLinecap="round"/>
+                <path d="M8 12h8M12 8v8" strokeLinecap="round"/>
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 15v4M9 19h6" strokeLinecap="round"/>
+              </svg>
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-serif text-lg md:text-xl font-semibold text-[#0F172A] leading-tight">VAMOS</h1>
+              <h1 className="font-serif text-lg md:text-xl font-semibold text-[#0F172A] leading-tight">Crois Seulement</h1>
               <p className="text-[10px] md:text-xs text-[#475569] tracking-widest uppercase">Couture</p>
             </div>
           </Link>
