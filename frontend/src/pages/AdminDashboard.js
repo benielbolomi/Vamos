@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
@@ -34,12 +34,6 @@ import {
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-// Helper to get auth header
-const getAuthHeader = () => {
-  const token = localStorage.getItem('token');
-  return token ? { Authorization: `Bearer ${token}` } : {};
-};
-
 // Products Management Component
 function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -58,11 +52,7 @@ function ProductsPage() {
   });
   const [uploading, setUploading] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const [productsRes, categoriesRes] = await Promise.all([
         axios.get(`${API}/products`),
@@ -75,7 +65,11 @@ function ProductsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
@@ -87,7 +81,8 @@ function ProductsPage() {
 
     try {
       const response = await axios.post(`${API}/upload`, formDataUpload, {
-        headers: { ...getAuthHeader(), 'Content-Type': 'multipart/form-data' }
+        headers: { 'Content-Type': 'multipart/form-data' },
+        withCredentials: true
       });
       setFormData({ ...formData, image_url: response.data.url });
       toast.success('Image uploadée');
@@ -108,10 +103,10 @@ function ProductsPage() {
       };
 
       if (editingProduct) {
-        await axios.put(`${API}/products/${editingProduct.id}`, data, { headers: getAuthHeader() });
+        await axios.put(`${API}/products/${editingProduct.id}`, data, { withCredentials: true });
         toast.success('Produit mis à jour');
       } else {
-        await axios.post(`${API}/products`, data, { headers: getAuthHeader() });
+        await axios.post(`${API}/products`, data, { withCredentials: true });
         toast.success('Produit créé');
       }
       setIsDialogOpen(false);
@@ -125,7 +120,7 @@ function ProductsPage() {
   const handleDelete = async (id) => {
     if (!window.confirm('Supprimer ce produit ?')) return;
     try {
-      await axios.delete(`${API}/products/${id}`, { headers: getAuthHeader() });
+      await axios.delete(`${API}/products/${id}`, { withCredentials: true });
       toast.success('Produit supprimé');
       fetchData();
     } catch (error) {
@@ -371,11 +366,7 @@ function CategoriesPage() {
   const [editingCategory, setEditingCategory] = useState(null);
   const [formData, setFormData] = useState({ name: '', description: '' });
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const response = await axios.get(`${API}/categories`);
       setCategories(response.data);
@@ -384,16 +375,20 @@ function CategoriesPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchCategories();
+  }, [fetchCategories]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingCategory) {
-        await axios.put(`${API}/categories/${editingCategory.id}`, formData, { headers: getAuthHeader() });
+        await axios.put(`${API}/categories/${editingCategory.id}`, formData, { withCredentials: true });
         toast.success('Catégorie mise à jour');
       } else {
-        await axios.post(`${API}/categories`, formData, { headers: getAuthHeader() });
+        await axios.post(`${API}/categories`, formData, { withCredentials: true });
         toast.success('Catégorie créée');
       }
       setIsDialogOpen(false);
@@ -408,7 +403,7 @@ function CategoriesPage() {
   const handleDelete = async (id) => {
     if (!window.confirm('Supprimer cette catégorie ?')) return;
     try {
-      await axios.delete(`${API}/categories/${id}`, { headers: getAuthHeader() });
+      await axios.delete(`${API}/categories/${id}`, { withCredentials: true });
       toast.success('Catégorie supprimée');
       fetchCategories();
     } catch (error) {
@@ -531,24 +526,24 @@ function MessagesPage() {
   const [loading, setLoading] = useState(true);
   const [selectedMessage, setSelectedMessage] = useState(null);
 
-  useEffect(() => {
-    fetchMessages();
-  }, []);
-
-  const fetchMessages = async () => {
+  const fetchMessages = useCallback(async () => {
     try {
-      const response = await axios.get(`${API}/contact`, { headers: getAuthHeader() });
+      const response = await axios.get(`${API}/contact`, { withCredentials: true });
       setMessages(response.data);
     } catch (error) {
       toast.error('Erreur lors du chargement');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchMessages();
+  }, [fetchMessages]);
 
   const markAsRead = async (id) => {
     try {
-      await axios.put(`${API}/contact/${id}/read`, {}, { headers: getAuthHeader() });
+      await axios.put(`${API}/contact/${id}/read`, {}, { withCredentials: true });
       fetchMessages();
     } catch (error) {
       console.error('Error marking as read:', error);
@@ -558,7 +553,7 @@ function MessagesPage() {
   const handleDelete = async (id) => {
     if (!window.confirm('Supprimer ce message ?')) return;
     try {
-      await axios.delete(`${API}/contact/${id}`, { headers: getAuthHeader() });
+      await axios.delete(`${API}/contact/${id}`, { withCredentials: true });
       toast.success('Message supprimé');
       setSelectedMessage(null);
       fetchMessages();
@@ -658,16 +653,12 @@ function MessagesPage() {
 function DashboardOverview() {
   const [stats, setStats] = useState({ products: 0, categories: 0, messages: 0 });
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       const [productsRes, categoriesRes, messagesRes] = await Promise.all([
         axios.get(`${API}/products`),
         axios.get(`${API}/categories`),
-        axios.get(`${API}/contact`, { headers: getAuthHeader() })
+        axios.get(`${API}/contact`, { withCredentials: true })
       ]);
       setStats({
         products: productsRes.data.length,
@@ -677,7 +668,11 @@ function DashboardOverview() {
     } catch (error) {
       console.error('Error fetching stats:', error);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
 
   return (
     <div data-testid="admin-dashboard-overview">

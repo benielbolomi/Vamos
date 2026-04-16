@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { MessageCircle, ArrowRight, Scissors } from 'lucide-react';
@@ -13,11 +13,7 @@ export default function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchFeaturedProducts();
-  }, []);
-
-  const fetchFeaturedProducts = async () => {
+  const fetchFeaturedProducts = useCallback(async () => {
     try {
       const response = await axios.get(`${API}/products`);
       setFeaturedProducts(response.data.slice(0, 9));
@@ -26,7 +22,11 @@ export default function HomePage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchFeaturedProducts();
+  }, [fetchFeaturedProducts]);
 
   const openWhatsApp = () => {
     const message = encodeURIComponent("Bonjour, je souhaite avoir des informations sur vos services de couture.");
